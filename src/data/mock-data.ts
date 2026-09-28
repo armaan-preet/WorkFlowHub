@@ -1,4 +1,4 @@
-import { User, Project, Task, Comment } from '@/types';
+import { User, Project, Task, Comment, AppNotification } from '@/types';
 
 export const mockUsers: User[] = [
   { id: 'u1', name: 'Armaanpreet Kaur', email: 'armaanpreet@example.com', role: 'Software Engineer', joinedDate: '2025-01-15' },
@@ -21,4 +21,12 @@ export const mockTasks: Task[] = [
 export const mockComments: Comment[] = [
   { id: 'c1', taskId: 't1', authorId: 'u2', text: 'Can we get this fixed today?', createdAt: '2025-09-24T10:33:00' },
   { id: 'c2', taskId: 't1', authorId: 'u1', text: 'Working on it.', createdAt: '2025-09-24T11:20:00' },
+];
+
+export const mockNotifications: AppNotification[] = [
+  { id: 'n1', type: 'deadline_soon', title: 'Task due tomorrow', message: '"Fix authentication issue" is due tomorrow.', timeLabel: '2 hours ago', read: false, link: '/tasks/t1' },
+  { id: 'n2', type: 'overdue', title: 'Task overdue', message: '"Design login page" is past its due date.', timeLabel: '5 hours ago', read: false, link: '/tasks/t2' },
+  { id: 'n3', type: 'deadline_soon', title: 'Project deadline approaching', message: '"API Integration" is due in 5 days.', timeLabel: 'Yesterday', read: false, link: '/projects/p3' },
+  { id: 'n4', type: 'comment', title: 'New comment', message: 'Rahul commented on "Fix authentication issue".', timeLabel: 'Yesterday', read: true, link: '/tasks/t1' },
+  { id: 'n5', type: 'task_assigned', title: 'New task assigned', message: 'You were assigned "Update dashboard UI".', timeLabel: '2 days ago', read: true, link: '/tasks/t3' },
 ];

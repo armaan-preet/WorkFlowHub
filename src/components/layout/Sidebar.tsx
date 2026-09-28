@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { LayoutDashboard, FolderKanban, CheckSquare, User, Settings, LogOut, CheckCircle2 } from 'lucide-react';
 
 const navItems = [
@@ -21,6 +21,13 @@ interface SidebarContentProps {
 
 export function SidebarContent({ onNavigate }: SidebarContentProps) {
   const pathname = usePathname();
+  const router = useRouter();
+
+  function handleLogout() {
+    localStorage.removeItem('isLoggedIn');
+    router.push('/login');
+    onNavigate?.();
+  }
 
   return (
     <div className="flex h-full flex-col justify-between bg-slate-900 text-slate-300">
@@ -69,10 +76,13 @@ export function SidebarContent({ onNavigate }: SidebarContentProps) {
             </Link>
           );
         })}
-        <button className="flex items-center gap-3 rounded-md px-3 py-2 text-left text-sm font-medium text-slate-300 transition-colors hover:bg-slate-800 hover:text-white">
-          <LogOut className="h-4 w-4" />
-          Logout
-        </button>
+        <button
+  onClick={handleLogout}
+  className="flex items-center gap-3 rounded-md px-3 py-2 text-left text-sm font-medium text-slate-300 transition-colors hover:bg-slate-800 hover:text-white"
+>
+  <LogOut className="h-4 w-4" />
+  Logout
+</button>
       </div>
     </div>
   );
